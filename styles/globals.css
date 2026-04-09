@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ════════════════════════════════════════════════════
+   A24-INSPIRED DESIGN SYSTEM — Finisterrae Films
+   Rule: Never use @apply with custom theme tokens.
+   Use plain CSS values or standard Tailwind classes.
+════════════════════════════════════════════════════ */
+
+/* ── CUSTOM PROPERTIES ───────────────────────────── */
+:root {
+  --color-black:          #000000;
+  --color-white:          #ffffff;
+  --color-off-white:      #f1f1f1;
+  --color-gray-light:     #cacaca;
+  --color-gray-mid:       #888888;
+  --color-gray-dark:      #555555;
+  --color-section-light:  #eeeeee;
+  --color-section-dark:   #222222;
+  --color-green:          #b0e9ac;
+  --color-orange:         #f95936;
+  --color-blue:           #3860be;
+  --header-height:        3rem;
+}
+
+/* ── BASE ────────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+  }
+
+  body {
+    @apply bg-white text-black;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+    line-height: 1.0;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  ::selection {
+    background-color: rgba(0,0,0,0.12);
+    color: #000;
+  }
+
+  /* Minimal scrollbar */
+  ::-webkit-scrollbar       { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: #fff; }
+  ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 0; }
+  ::-webkit-scrollbar-thumb:hover { background: #000; }
+}
+
+/* ── COMPONENTS ──────────────────────────────────── */
+@layer components {
+
+  /* Layout */
+  .page-container        { @apply max-w-screen-2xl mx-auto px-5 sm:px-8; }
+  .page-container-narrow { @apply max-w-5xl mx-auto px-5 sm:px-8; }
+  .page-top              { padding-top: var(--header-height); }
+
+  /* A24 label (SHOP / PODCAST / WATCH NOW) */
+  .label-tag {
+    @apply text-xs font-medium uppercase;
+    color: var(--color-gray-mid);
+    letter-spacing: 0.12em;
+  }
+
+  /* CTA arrow link */
+  .cta-arrow {
+    @apply inline-flex items-center gap-3 text-xs font-medium uppercase;
+    color: var(--color-black);
+    letter-spacing: 0.14em;
+    transition: opacity 300ms ease;
+  }
+  .cta-arrow:hover { opacity: 0.55; }
+
+  /* Buttons */
+  .btn-primary {
+    @apply inline-block text-xs font-medium uppercase px-6 py-3;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    letter-spacing: 0.14em;
+    transition: background-color 300ms ease;
+  }
+  .btn-primary:hover { background-color: var(--color-section-dark); }
+
+  .btn-outline {
+    @apply inline-block text-xs font-medium uppercase px-6 py-3;
+    border: 1px solid var(--color-black);
+    color: var(--color-black);
+    letter-spacing: 0.14em;
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+  .btn-outline:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
+  }
+
+  .btn-outline-white {
+    @apply inline-block text-xs font-medium uppercase px-6 py-3;
+    border: 1px solid var(--color-white);
+    color: var(--color-white);
+    letter-spacing: 0.14em;
+    transition: background-color 300ms ease, color 300ms ease;
+  }
+  .btn-outline-white:hover {
+    background-color: var(--color-white);
+    color: var(--color-black);
+  }
+
+  /* Inputs */
+  .input-ff {
+    @apply w-full text-xs uppercase px-4 py-3;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-light);
+    color: var(--color-black);
+    letter-spacing: 0.1em;
+    outline: none;
+    transition: border-color 300ms ease;
+  }
+  .input-ff::placeholder { color: var(--color-gray-mid); }
+  .input-ff:focus { border-color: var(--color-black); }
+
+  .input-ff-dark {
+    @apply w-full text-xs uppercase px-4 py-3;
+    background-color: var(--color-black);
+    border: 1px solid var(--color-section-dark);
+    color: var(--color-white);
+    letter-spacing: 0.1em;
+    outline: none;
+    transition: border-color 300ms ease;
+  }
+  .input-ff-dark::placeholder { color: var(--color-gray-dark); }
+  .input-ff-dark:focus { border-color: var(--color-white); }
+
+  /* Scroll-reveal (JS adds .revealed) */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── UTILITIES ───────────────────────────────────── */
+@layer utilities {
+  .text-balance    { text-wrap: balance; }
+  .tracking-a24    { letter-spacing: 0.12em; }
+  .h-screen-safe   { height: 100dvh; }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+
+  /* Aspect ratios */
+  .aspect-poster    { aspect-ratio: 2 / 3; }
+  .aspect-cinematic { aspect-ratio: 2.39 / 1; }
+  .aspect-a24-block { aspect-ratio: 4 / 5; }
+
+  /* Line clamps */
+  .line-clamp-1 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; }
+  .line-clamp-2 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+  .line-clamp-3 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+}
