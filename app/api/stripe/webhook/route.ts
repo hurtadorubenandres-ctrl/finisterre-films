@@ -45,4 +45,4 @@ export async function POST(req: NextRequest) {
 }
 
 // Necesario para que Stripe reciba el body sin parsear
-export const config = { api: { bodyParser: false } }
+export const dynamic = 'force-dynamic'
