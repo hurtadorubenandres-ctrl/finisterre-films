@@ -30,7 +30,7 @@ const UserSchema = new Schema<IUserDocument>(
     toJSON: {
       virtuals: true,
       transform: (_doc, ret) => {
-        delete ret.password   // nunca exponer el hash
+        ret.password = undefined   // nunca exponer el hash
         return ret
       },
     },
