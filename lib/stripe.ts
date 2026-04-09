@@ -4,14 +4,7 @@
 
 import Stripe from 'stripe'
 
-if (!process.env.STRIPE_SECRET_KEY) {
-  throw new Error(
-    'Por favor define STRIPE_SECRET_KEY en .env.local\n' +
-    'Obtén tus claves de test en: https://dashboard.stripe.com/test/apikeys'
-  )
-}
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY ?? 'placeholder_key', {
   apiVersion: '2023-10-16',
   typescript: true,
 })
