@@ -29,8 +29,8 @@ const UserSchema = new Schema<IUserDocument>(
     timestamps: true,
     toJSON: {
       virtuals: true,
-      transform: (_doc, ret) => {
-        ret.password = undefined   // nunca exponer el hash
+      transform: (_doc, ret: Record<string, unknown>) => {
+        delete ret.password   // nunca exponer el hash
         return ret
       },
     },
